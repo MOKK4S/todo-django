@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.box {
+  height: 200px;
+  width: 600px;
+  border: 2px black solid;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 25px;
+  padding: 20px;
+  font-size: xx-large;
+}
+.cancel {
+  outline: none;
+
+  padding: 5px;
+  font-size: x-large;
+  text-decoration: none;
+  margin: 5px;
+}
+.send {
+  padding: 5px;
+  font-size: x-large;
+}

@@ -1,0 +1,107 @@
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+<style>
+  body {
+    background-color: #c5c5c5;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: black 4px solid;
+  }
+
+  input::placeholder {
+    color: #d3d3d3;
+    font-size: 22px;
+  }
+
+  .submit {
+    background-color: #6ba3e8;
+    padding: 5px;
+  }
+
+  .center-column {
+    width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 6px 2px 30px 0px rgba(0, 0, 0, 0.75);
+    align-items: center;
+  }
+
+  .item-row {
+    background-color: #7369ff;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0px -1px 10px -4px rgba(0, 0, 0, 0.75);
+    font-size: x-large;
+    font-weight: 500;
+  }
+
+  .btn-danger {
+    background-color: #ffae19;
+    border-color: #e59400;
+  }
+  .bigger {
+    padding: 15px;
+    font-size: x-large;
+    font-weight: 600;
+  }
+  .medium {
+    padding: 5px;
+    font-size: large;
+    font-weight: 400;
+  }
+</style>
+
+<div class="center-column">
+  <form method="POST" action="/">
+    {% csrf_token %} {{form.title}}
+    <input
+      class="btn btn-info bigger"
+      type="submit"
+      name="Create Task"
+      placeholder="send"
+    />
+  </form>
+
+  <div class="todo-list">
+    {% for task in tasks %}
+    <div class="item-row">
+      <a
+        class="btn btn-sm btn-info medium open"
+        href="{% url 'update_task' task.id %}"
+        >Update</a
+      >
+
+      <a class="btn btn-sm btn-danger medium" href="{% url 'delete' task.id %}"
+        >Delete</a
+      >
+
+      {% if task.complete == True %}
+      <strike>{{task}}</strike>
+      {% else %}
+      <span>{{task}}</span>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
